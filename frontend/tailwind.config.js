@@ -9,6 +9,9 @@ module.exports = {
       backgroundColor: {
         themeColor: ["#1d9bf0", "#1190e6"],
       },
+      borderColor: {
+        themeColor: ["#1d9bf0"],
+      },
     },
   },
   plugins: [],
