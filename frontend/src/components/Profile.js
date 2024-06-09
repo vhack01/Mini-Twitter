@@ -29,8 +29,8 @@ const Profile = () => {
       <div className="p-2 px-4">
         <h1 className="font-bold text-lg">Vishwas Kumar</h1>
         <h3 className="text-xs text-gray-600">@Vishwas123</h3>
-        <p className="mt-4 text-sm">Student at LPU</p>
-        <p className="text-sm">A passionate Fullstack developer from india</p>
+        <p className="mt-4 text-xs">Student at LPU</p>
+        <p className="text-xs">A passionate Fullstack developer from india</p>
       </div>
     </div>
   );

@@ -4,13 +4,14 @@ const PostBox = () => {
   return (
     <div className="p-4 flex border-b gap-x-2 font-montserrat">
       <div className="h-[80px] w-[80px] rounded bg-gray-200 overflow-hidden">
-        <img src={SAMPLE_URL} className="" />
+        <img src={SAMPLE_URL} alt="ProfileImage" className="" />
       </div>
       <div className="w-full flex flex-col">
         <div className="w-full">
           <textarea
             className="w-full h-32 p-2 resize-none scroll-smooth outline-none text-sm"
             placeholder="What is happening?"
+            spellCheck="false"
           ></textarea>
         </div>
         <div className="flex justify-between items-center border-t p-2">

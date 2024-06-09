@@ -10,7 +10,7 @@ function App() {
       <div className="w-full">
         <Outlet />
       </div>
-      {/* <RightSidebar /> */}
+      <RightSidebar />
     </div>
   );
 }

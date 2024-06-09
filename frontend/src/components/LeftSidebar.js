@@ -16,7 +16,7 @@ const LeftSidebar = () => {
       <ul className="l">
         <li className="">
           <Link to="/home">
-            <div className="p-2 rounded-2xl mt-1 flex gap-x-3 items-center">
+            <div className="p-2 rounded-2xl flex gap-x-3 items-center">
               <div>
                 <BiLogoTwitter className="text-3xl" />
               </div>
@@ -25,7 +25,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to="/home">
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiHome className="text-2xl" />
               </div>
@@ -37,7 +37,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to="/explore">
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiHash className="text-2xl" />
               </div>
@@ -49,7 +49,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to="/notification">
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiBell className="text-2xl" />
               </div>
@@ -61,7 +61,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to={""}>
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2  flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiUser className="text-2xl" />
               </div>
@@ -73,7 +73,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to="/bookmarks">
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiBookmarkAlt className="text-2xl" />
               </div>
@@ -85,7 +85,7 @@ const LeftSidebar = () => {
         </li>
         <li className="">
           <Link to="/home">
-            <div className="p-4 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-200">
+            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiArrowFromLeft className="text-2xl" />
               </div>
@@ -93,9 +93,9 @@ const LeftSidebar = () => {
             </div>
           </Link>
         </li>
-        <li className="">
+        <li className="mt-2">
           <Link to="/home">
-            <div className="p-4 rounded-full mt-2 cursor-pointer bg-themeColor-0 text-white text-center hover:bg-themeColor-1">
+            <div className="px-4 py-3 rounded-full mt-2 cursor-pointer bg-themeColor-0 text-white text-center hover:bg-themeColor-1">
               Post
             </div>
           </Link>
