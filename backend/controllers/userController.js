@@ -1,4 +1,4 @@
-import { userExist } from "../middleware/userExits.js";
+import { userExist } from "../utils/userExits.js";
 import { USER } from "../models/userSchema.js";
 
 export const Signup = async (req, res) => {
@@ -20,7 +20,6 @@ export const Signup = async (req, res) => {
       password,
     });
 
-    console.log("Account Created:", isCreated);
     if (!isCreated) {
       return res.status(500).json({
         message: "Failed to created account",
@@ -30,7 +29,7 @@ export const Signup = async (req, res) => {
 
     res.status(201).json({
       message: "Account created sucessfully",
-      success: false,
+      success: true,
     });
   } catch (err) {
     return res.status(500).json({
