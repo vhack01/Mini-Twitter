@@ -9,6 +9,7 @@ import Explore from "./components/Explore";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 import Bookmarks from "./components/Bookmarks";
+import Signup from "./components/Signup";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
         element: <Explore />,
       },
       {
-        path: "/:id",
+        path: "/profile",
         element: <Profile />,
       },
       {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 

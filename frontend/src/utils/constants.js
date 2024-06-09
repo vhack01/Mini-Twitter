@@ -3,3 +3,6 @@ export const SAMPLE_URL =
 
 export const BANNER_URL =
   "https://img.freepik.com/free-vector/stylish-glowing-digital-red-lines-banner_1017-23964.jpg";
+
+export const LOGO =
+  "https://i.pinimg.com/originals/73/db/02/73db02344af2f927fd361decc424e8b8.png";

@@ -60,12 +60,12 @@ const LeftSidebar = () => {
           </Link>
         </li>
         <li className="">
-          <Link to={""}>
+          <Link to="/profile">
             <div className="px-4 py-3 rounded-full mt-2  flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiUser className="text-2xl" />
               </div>
-              <div className={pathname === "123" ? "font-bold" : ""}>
+              <div className={pathname === "/profile" ? "font-bold" : ""}>
                 Profile
               </div>
             </div>
