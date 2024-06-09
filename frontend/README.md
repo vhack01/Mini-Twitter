@@ -10,3 +10,10 @@
     - React-Router-Dom
     - React-icons
     -
+
+### backend dependencies
+
+    - Express
+    - Mongoose
+    - Dotenv
+    -
