@@ -2,22 +2,18 @@ import mongoose from "mongoose";
 
 const tweetSchema = new mongoose.Schema(
   {
-    userid: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    message: {
+    description: {
       type: String,
     },
     like: {
-      type: Number,
-      default: 0,
-    },
-    comment: {
       type: Array,
       default: [],
     },
-    bookmarks: {
+    comment: {
       type: Array,
       default: [],
     },

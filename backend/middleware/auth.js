@@ -1,12 +1,13 @@
 import jwt from "jsonwebtoken";
 import configEnv from "../utils/configEnv.js";
 const auth = (req, res, next) => {
+  console.log("authenticating...");
   const token = req.headers.authorization;
-  console.log("token:", token);
   configEnv("../.env");
   try {
     const decode = jwt.verify(token, process.env.SECRET_KEY);
-    console.log("decode:", decode);
+    console.log("decode auth:", decode);
+    req.body.id = decode.userId;
     next();
   } catch (err) {
     return res.status(401).json({

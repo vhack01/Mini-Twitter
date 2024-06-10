@@ -1,5 +1,5 @@
 import { validateUser } from "../utils/validateUser.js";
-import jsonwebtoken from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config({
@@ -8,9 +8,9 @@ dotenv.config({
 
 export const Login = async (req, res) => {
   const { username, password } = req.body;
-  const auth = await validateUser({ username, password });
-  console.log("auth:", auth);
-  if (!auth) {
+  const user = await validateUser({ username, password });
+  console.log("user:", user);
+  if (user === null) {
     return res.status(401).json({
       message: "Invalid user credentials",
       success: false,
@@ -19,7 +19,7 @@ export const Login = async (req, res) => {
 
   let token = null;
   try {
-    token = jsonwebtoken.sign({ username }, process.env.SECRET_KEY);
+    token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY);
   } catch (err) {
     return res.status(500).json({
       message: "Internal Server Error",
