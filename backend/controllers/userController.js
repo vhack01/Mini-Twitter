@@ -124,7 +124,7 @@ export const Profile = async (req, res) => {
     res.status(200).json({
       message: "User profile",
       success: true,
-      data: user,
+      profile: user,
     });
   } catch (err) {
     return res.status(401).json({

@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 import Bookmarks from "./components/Bookmarks";
 import Signup from "./components/Signup";
+import Home from "./components/Home";
 
 const router = createBrowserRouter([
   {
@@ -17,31 +18,37 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
         path: "/home",
-        element: <Feed />,
-      },
-      {
-        path: "/explore",
-        element: <Explore />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/bookmarks",
-        element: <Bookmarks />,
+        element: <Home />,
+        children: [
+          {
+            path: "/home/feed",
+            element: <Feed />,
+          },
+          {
+            path: "/home/explore",
+            element: <Explore />,
+          },
+          {
+            path: "/home/profile/:id",
+            element: <Profile />,
+          },
+          {
+            path: "/home/bookmarks",
+            element: <Bookmarks />,
+          },
+        ],
       },
     ],
     errorElement: <Error />,
-  },
-  {
-    path: "/login",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
   },
 ]);
 

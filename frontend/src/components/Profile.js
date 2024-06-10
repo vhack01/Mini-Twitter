@@ -1,6 +1,17 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BANNER_URL, SAMPLE_URL } from "../utils/constants";
+import useGetProfile from "../hooks/useGetProfile";
+import { useParams } from "react-router-dom";
 const Profile = () => {
+  const { id } = useParams();
+  console.log("profile id:", id);
+  const data = useGetProfile(id);
+  console.log("profile data:", data);
+
+  if (data === null) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div className="font-montserrat">
       <div className="border-b flex items-center gap-x-4 p-2">
