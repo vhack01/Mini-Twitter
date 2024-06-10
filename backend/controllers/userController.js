@@ -10,7 +10,6 @@ export const Signup = async (req, res) => {
   try {
     const { name, username, email, password } = req.body;
     const user = await userExist({ username, email });
-    console.log("Create Account:", user);
     if (user) {
       return res.status(401).json({
         message: "User already exist",
@@ -62,6 +61,7 @@ export const Login = async (req, res) => {
       message: "Logged In successfully",
       success: true,
       token,
+      user,
     });
   } catch (err) {
     return res.status(500).json({

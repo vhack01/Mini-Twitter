@@ -9,7 +9,9 @@
     - Tailwindcss
     - React-Router-Dom
     - React-icons
-    -
+    - Axios
+    - React Hot Toast
+    - Redux
 
 ### backend dependencies
 

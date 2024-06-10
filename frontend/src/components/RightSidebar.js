@@ -21,7 +21,7 @@ const RightSidebar = () => {
             <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
               <div className="flex gap-x-1">
                 <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" />
+                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
                 </div>
                 <div className="flex flex-col gap-y-1">
                   <div className="font-medium text-sm">Vishwas</div>
@@ -39,7 +39,7 @@ const RightSidebar = () => {
             <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
               <div className="flex gap-x-1">
                 <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" />
+                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
                 </div>
                 <div className="flex flex-col gap-y-1">
                   <div className="font-medium text-sm">Vishwas</div>
@@ -57,7 +57,7 @@ const RightSidebar = () => {
             <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
               <div className="flex gap-x-1">
                 <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" />
+                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
                 </div>
                 <div className="flex flex-col gap-y-1">
                   <div className="font-medium text-sm">Vishwas</div>

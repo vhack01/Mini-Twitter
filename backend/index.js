@@ -3,13 +3,21 @@ import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import tweetRoute from "./routes/tweetRoute.js";
 import databaseConnection from "./config/db.js";
-const app = express();
+import cors from "cors";
 
+const app = express();
 dotenv.config({
   path: ".env",
 });
 
 databaseConnection();
+
+const corsOption = {
+  origin: "http://localhost:3000",
+  credentials: true,
+};
+
+app.use(cors(corsOption));
 
 app.use(
   express.urlencoded({

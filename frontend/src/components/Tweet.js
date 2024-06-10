@@ -9,7 +9,7 @@ const Tweet = () => {
   return (
     <div className="p-4 flex border-b gap-x-2 font-montserrat">
       <div className="h-[60px] w-[70px] rounded-full bg-gray-200 overflow-hidden">
-        <img src={SAMPLE_URL} className="" />
+        <img src={SAMPLE_URL} alt="profileImage" className="" />
       </div>
       <div className="w-full flex flex-col">
         <div className="w-full flex flex-col gap-y-2">
