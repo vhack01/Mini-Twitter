@@ -1,4 +1,9 @@
-import { BiBookmarkAlt, BiHeart, BiMessageRounded } from "react-icons/bi";
+import {
+  BiBookmarkAlt,
+  BiHeart,
+  BiMessageRounded,
+  BiTrash,
+} from "react-icons/bi";
 import { SAMPLE_URL } from "../utils/constants";
 const Tweet = () => {
   return (
@@ -31,6 +36,9 @@ const Tweet = () => {
             <li className="rounded-full flex items-center p-2 cursor-pointer">
               <BiBookmarkAlt className="text-xl" />
               <span>0</span>
+            </li>
+            <li className="rounded-full flex items-center p-2 cursor-pointer">
+              <BiTrash className="text-xl" />
             </li>
           </ul>
         </div>

@@ -1,1 +1,0 @@
-const Logout = (req, res) => {};
