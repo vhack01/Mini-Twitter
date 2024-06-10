@@ -1,4 +1,5 @@
 import { Tweet } from "../models/tweetSchema.js";
+import { USER } from "../models/userSchema.js";
 
 export const CreateTweet = async (req, res) => {
   const { description, id } = req.body;
@@ -20,13 +21,10 @@ export const CreateTweet = async (req, res) => {
   }
 };
 
-export const EditTweet = async (req, res) => {};
-
 export const DeleteTweet = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const isDeleted = await Tweet.findByIdAndDelete(_id);
-    console.log("isDeleted:", isDeleted);
     if (!isDeleted) {
       return res.status(401).json({
         message: "Failed to delete tweet",
@@ -68,6 +66,75 @@ export const LikeDislike = async (req, res) => {
     return res.status(401).json({
       message: "Failed to like / dislike  tweet",
       success: false,
+    });
+  }
+};
+
+export const AllTweet = async (req, res) => {
+  // LoggedInUser tweet + Its followers tweet
+  try {
+    const { id: userId } = req.params;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+        success: false,
+      });
+    }
+
+    const user = await USER.findById(userId);
+    console.log("all tweet, user ", user);
+
+    const userTweets = await Tweet.find({ userId });
+    console.log("userTweets", userTweets);
+
+    const followingsTweets = await Promise.all(
+      user.followings.map((otherUserId) => Tweet.find({ userId: otherUserId }))
+    );
+    console.log("followingsTweets", followingsTweets);
+
+    return res.status(200).json({
+      message: "All tweets fetched successfully",
+      myTweets: userTweets,
+      followingsTweets,
+      success: true,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      message: "Failed to get tweets",
+      success: false,
+      error: err,
+    });
+  }
+};
+
+export const FollowingsTweet = async (req, res) => {
+  try {
+    const { id: userId } = req.params;
+    if (!userId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+        success: false,
+      });
+    }
+
+    const user = await USER.findById(userId);
+
+    const followingsTweets = await Promise.all(
+      user.followings.map((otherUserId) => Tweet.find({ userId: otherUserId }))
+    );
+
+    console.log("followingsTweets", followingsTweets);
+
+    return res.status(200).json({
+      message: "All tweets fetched successfully",
+      followingsTweets,
+      success: true,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      message: "Failed to get tweets",
+      success: false,
+      error: err,
     });
   }
 };

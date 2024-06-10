@@ -176,9 +176,6 @@ export const Follow = async (req, res) => {
     const { userId: loggedInId } = req.body;
     const { id: otherUserId } = req.params;
 
-    console.log("loggedInId", loggedInId);
-    console.log("otherUserId", otherUserId);
-
     if (!loggedInId || !otherUserId) {
       return res.status(401).json({
         message: "Unauthorized user",
@@ -228,9 +225,6 @@ export const Unfollow = async (req, res) => {
     const { id: loggedInId } = req.body;
     const { id: otherUserId } = req.params;
 
-    console.log("loggedInId", loggedInId);
-    console.log("otherUserId", otherUserId);
-
     if (!loggedInId || !otherUserId) {
       return res.status(401).json({
         message: "Unauthorized user",
@@ -246,9 +240,6 @@ export const Unfollow = async (req, res) => {
         success: false,
       });
     }
-
-    console.log("loggedInUser", loggedInUser);
-    console.log("otherUser", otherUser);
 
     if (loggedInUser.followings.includes(otherUserId)) {
       // follow
