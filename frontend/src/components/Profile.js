@@ -2,15 +2,17 @@ import { BiLeftArrowAlt } from "react-icons/bi";
 import { BANNER_URL, SAMPLE_URL } from "../utils/constants";
 import useGetProfile from "../hooks/useGetProfile";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 const Profile = () => {
   const { id } = useParams();
-  console.log("profile id:", id);
-  const data = useGetProfile(id);
-  console.log("profile data:", data);
+  useGetProfile(id);
+  const data = useSelector((store) => {
+    return store.user.profile;
+  });
 
-  if (data === null) {
-    return <h1>Loading...</h1>;
-  }
+  if (data === null) return <h1>Loading...</h1>;
+
+  const { name, username } = data;
 
   return (
     <div className="font-montserrat">
@@ -19,7 +21,7 @@ const Profile = () => {
           <BiLeftArrowAlt className="text-2xl" />
         </div>
         <div>
-          <div className="text-lg font-bold">Vishwas kumar</div>
+          <div className="text-lg font-bold capitalize">{name}</div>
           <div className="text-xs text-gray-600">136 posts</div>
         </div>
       </div>
@@ -38,8 +40,8 @@ const Profile = () => {
       </div>
 
       <div className="p-2 px-4">
-        <h1 className="font-bold text-lg">Vishwas Kumar</h1>
-        <h3 className="text-xs text-gray-600">@Vishwas123</h3>
+        <h1 className="font-bold text-lg capitalize">{name}</h1>
+        <h3 className="text-xs text-gray-600 ">@{username}</h3>
         <p className="mt-4 text-xs">Student at LPU</p>
         <p className="text-xs">A passionate Fullstack developer from india</p>
       </div>
