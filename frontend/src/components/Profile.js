@@ -1,9 +1,10 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
 import { BANNER_URL, SAMPLE_URL } from "../utils/constants";
 import useGetProfile from "../hooks/useGetProfile";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 const Profile = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   useGetProfile(id);
   const data = useSelector((store) => {
@@ -12,13 +13,19 @@ const Profile = () => {
 
   if (data === null) return <h1>Loading...</h1>;
 
+  console.log("profile data:", data);
   const { name, username } = data;
 
   return (
     <div className="font-montserrat">
       <div className="border-b flex items-center gap-x-4 p-2">
-        <div>
-          <BiLeftArrowAlt className="text-2xl" />
+        <div className="cursor-pointer">
+          <BiLeftArrowAlt
+            className="text-2xl"
+            onClick={() => {
+              navigate(-1);
+            }}
+          />
         </div>
         <div>
           <div className="text-lg font-bold capitalize">{name}</div>

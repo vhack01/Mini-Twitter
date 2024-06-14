@@ -10,7 +10,7 @@ const useGetProfile = (id) => {
   const dispatch = useDispatch();
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   async function fetchData() {
     try {

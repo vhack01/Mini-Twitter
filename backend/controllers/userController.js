@@ -160,11 +160,11 @@ export const OthersProfile = async (req, res) => {
     res.status(200).json({
       message: "User profile",
       success: true,
-      data: users,
+      users: users,
     });
   } catch (err) {
     return res.status(401).json({
-      message: "Unable to fetch profile",
+      message: "Unable to fetch profiles",
       success: false,
       error: err,
     });

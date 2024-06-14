@@ -5,7 +5,14 @@ import {
   BiTrash,
 } from "react-icons/bi";
 import { SAMPLE_URL } from "../utils/constants";
+import { useSelector } from "react-redux";
 const Tweet = () => {
+  // const { myTweets } = useSelector((store) => {
+  //   return store.tweet;
+  // });
+
+  // if (myTweets.length === 0) return <h1>Loading...</h1>;
+
   return (
     <div className="p-4 flex border-b gap-x-2 font-montserrat">
       <div className="h-[60px] w-[70px] rounded-full bg-gray-200 overflow-hidden">

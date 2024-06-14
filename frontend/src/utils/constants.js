@@ -8,3 +8,4 @@ export const LOGO =
   "https://i.pinimg.com/originals/73/db/02/73db02344af2f927fd361decc424e8b8.png";
 
 export const USER_END_POINT = "http://localhost:8080/api/v1/user";
+export const TWEET_END_POINT = "http://localhost:8080/api/v1/tweet";

@@ -1,9 +1,19 @@
 import { BiSearchAlt2 } from "react-icons/bi";
-import { useLocation } from "react-router-dom";
-import { SAMPLE_URL } from "../utils/constants";
+import useGetOtherUsers from "../hooks/useGetOtherUsers";
+import { useSelector } from "react-redux";
+import ProfileStrip from "./ProfileStripe";
 const RightSidebar = () => {
-  const { pathname } = useLocation();
-  console.log("pathname:", pathname);
+  const otherUsers = useSelector((store) => {
+    return store.user.otherUser;
+  });
+
+  const user = useSelector((store) => {
+    return store.user.user;
+  });
+  useGetOtherUsers(user?._id);
+
+  console.log("other users:", otherUsers);
+
   return (
     <div className="w-[40%] border flex flex-col gap-y-4 font-montserrat p-4">
       <div className="flex pl-2 items-center rounded-full bg-gray-100 overflow-hidden">
@@ -18,60 +28,13 @@ const RightSidebar = () => {
         <h2 className="mb-2 font-bold">Who to follow</h2>
         <div className="">
           <ul className="flex flex-col gap-y-2">
-            <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
-              <div className="flex gap-x-1">
-                <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
-                </div>
-                <div className="flex flex-col gap-y-1">
-                  <div className="font-medium text-sm">Vishwas</div>
-                  <div className="font-medium text-xs text-gray-600">
-                    @Vishwas123
-                  </div>
-                </div>
-              </div>
-              <div className="">
-                <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
-                  Profile
-                </button>
-              </div>
-            </li>
-            <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
-              <div className="flex gap-x-1">
-                <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
-                </div>
-                <div className="flex flex-col gap-y-1">
-                  <div className="font-medium text-sm">Vishwas</div>
-                  <div className="font-medium text-xs text-gray-600">
-                    @Vishwas123
-                  </div>
-                </div>
-              </div>
-              <div className="">
-                <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
-                  Profile
-                </button>
-              </div>
-            </li>
-            <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
-              <div className="flex gap-x-1">
-                <div className="h-[40px] w-[40px] rounded-full bg-gray-200 overflow-hidden">
-                  <img src={SAMPLE_URL} className="" alt="ProfileImage" />
-                </div>
-                <div className="flex flex-col gap-y-1">
-                  <div className="font-medium text-sm">Vishwas</div>
-                  <div className="font-medium text-xs text-gray-600">
-                    @Vishwas123
-                  </div>
-                </div>
-              </div>
-              <div className="">
-                <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
-                  Profile
-                </button>
-              </div>
-            </li>
+            {otherUsers === null ? (
+              <h1>Loading otherUsers...</h1>
+            ) : (
+              otherUsers.map((user) => (
+                <ProfileStrip key={user._id} data={user} />
+              ))
+            )}
           </ul>
         </div>
       </div>
