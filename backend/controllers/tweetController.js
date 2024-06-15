@@ -11,7 +11,12 @@ export const CreateTweet = async (req, res) => {
   }
 
   try {
-    const tweet = await Tweet.create({ userId: id, description });
+    const user = await USER.findById(id);
+    const tweet = await Tweet.create({
+      userId: id,
+      description,
+      userDetail: user,
+    });
     res.status(200).json({
       message: "Tweet created",
       success: true,
@@ -82,20 +87,15 @@ export const AllTweet = async (req, res) => {
     }
 
     const user = await USER.findById(userId);
-    console.log("all tweet, user ", user);
-
     const userTweets = await Tweet.find({ userId });
-    console.log("userTweets", userTweets);
 
-    const followingsTweets = await Promise.all(
-      user.followings.map((otherUserId) => Tweet.find({ userId: otherUserId }))
+    const followers = await Promise.all(
+      user.followers.map((otherUserId) => Tweet.find({ userId: otherUserId }))
     );
-    console.log("followingsTweets", followingsTweets);
-
     return res.status(200).json({
       message: "All tweets fetched successfully",
       myTweets: userTweets,
-      followingsTweets,
+      followers,
       success: true,
     });
   } catch (err) {

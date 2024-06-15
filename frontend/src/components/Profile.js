@@ -10,11 +10,14 @@ const Profile = () => {
   const data = useSelector((store) => {
     return store.user.profile;
   });
+  const userData = useSelector((store) => {
+    return store.user.user;
+  });
 
   if (data === null) return <h1>Loading...</h1>;
 
   console.log("profile data:", data);
-  const { name, username } = data;
+  const { _id, name, username } = data;
 
   return (
     <div className="font-montserrat">
@@ -40,9 +43,15 @@ const Profile = () => {
           <img src={SAMPLE_URL} alt="profilImage" className="object-contain" />
         </div>
         <div className="">
-          <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
-            Follow
-          </button>
+          {userData?._id === _id ? (
+            <button className="border-2 text-gray-600 text-xs font-semibold px-4 py-2 rounded-full cursor-pointer">
+              Edit
+            </button>
+          ) : (
+            <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
+              Follow
+            </button>
+          )}
         </div>
       </div>
 

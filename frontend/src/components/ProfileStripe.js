@@ -3,7 +3,6 @@ import { SAMPLE_URL } from "../utils/constants";
 
 const ProfileStrip = ({ data }) => {
   const { _id: id, name, username } = data;
-  console.log("strip data:", data);
   return (
     <li className="px-2 py-1 rounded flex justify-between items-center hover:bg-gray-200">
       <div className="flex gap-x-1">

@@ -6,7 +6,6 @@ const auth = (req, res, next) => {
   configEnv("../.env");
   try {
     const decode = jwt.verify(token, process.env.SECRET_KEY);
-    console.log("decode auth:", decode);
     req.body.id = decode.userId;
     next();
   } catch (err) {

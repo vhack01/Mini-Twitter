@@ -12,7 +12,7 @@ const RightSidebar = () => {
   });
   useGetOtherUsers(user?._id);
 
-  console.log("other users:", otherUsers);
+  // console.log("other users:", otherUsers);
 
   return (
     <div className="w-[40%] border flex flex-col gap-y-4 font-montserrat p-4">

@@ -14,15 +14,12 @@ const LeftSidebar = () => {
     return store.user.user;
   });
 
-  console.log("user", user);
-
   const { pathname } = useLocation();
-  console.log("pathname:", pathname);
   return (
     <div className="w-[30%] border font-montserrat p-4">
       <ul className="l">
         <li className="">
-          <Link to="/home">
+          <Link to="/home/feed">
             <div className="p-2 rounded-2xl flex gap-x-3 items-center">
               <div>
                 <BiLogoTwitter className="text-3xl" />

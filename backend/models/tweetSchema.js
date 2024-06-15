@@ -17,7 +17,12 @@ const tweetSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    userDetail: {
+      type: Object,
+      default: {},
+    },
   },
+
   { timestamps: true }
 );
 export const Tweet = mongoose.model("Tweet", tweetSchema);

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getToken from "../utils/getToken";
 import axios from "axios";
 import { TWEET_END_POINT } from "../utils/constants";
@@ -8,9 +8,12 @@ import { setAllTweet } from "../store/slices/tweetSlice";
 
 const useGetAllTweet = (id) => {
   const dispatch = useDispatch();
+
+  const refresh = useSelector((store) => store.tweet.refresh);
+
   useEffect(() => {
     fetchTweet();
-  }, []);
+  }, [refresh]);
 
   async function fetchTweet() {
     try {
@@ -27,8 +30,8 @@ const useGetAllTweet = (id) => {
         toast.error(res.data.message);
         return;
       }
-      const { followingsTweets, myTweets } = res?.data;
-      dispatch(setAllTweet({ followingsTweets, myTweets }));
+      const { followers, myTweets } = res?.data;
+      dispatch(setAllTweet({ followers: followers[0], myTweets }));
     } catch (err) {
       toast.error(err.response.data.message);
     }
