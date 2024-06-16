@@ -24,6 +24,7 @@ const LeftSidebar = () => {
               <div>
                 <BiLogoTwitter className="text-3xl" />
               </div>
+              <div className={`capitalize text-lg`}>{user?.name}</div>
             </div>
           </Link>
         </li>

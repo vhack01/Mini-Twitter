@@ -9,21 +9,23 @@ const Feed = () => {
   const id = useGetUserId();
   useGetAllTweet(id);
 
-  const { myTweets, followers } = useSelector((store) => {
+  const { myTweets } = useSelector((store) => {
     return store.tweet;
   });
-  console.log("followers:", followers);
-  if (myTweets === null && followers === null) return <h1>Loading feeds...</h1>;
-  const mergedTweet = [...myTweets, ...followers];
-  console.log("mergedTweet:", mergedTweet);
+  // console.log("followers feed:", followers);
+  // console.log("followers:", followers);
+  if (myTweets === null) return <h1>Loading feeds...</h1>;
+  console.log("myTweets:", myTweets);
 
   return (
     <div className="">
       <Tabs />
       <PostBox />
-      {mergedTweet?.map((tweet) => (
-        <Tweet key={tweet?._id} data={tweet} />
-      ))}
+      {myTweets.length > 0 ? (
+        myTweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
+      ) : (
+        <h1>No Post</h1>
+      )}
       <Tweet />
     </div>
   );

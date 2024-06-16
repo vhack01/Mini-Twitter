@@ -16,7 +16,7 @@ const Tweet = ({ data }) => {
   const userData = useSelector((store) => {
     return store.user.user;
   });
-  if (data === undefined) return <h1>Loading tweet</h1>;
+  if (data === undefined) return;
   const {
     _id,
     userId,

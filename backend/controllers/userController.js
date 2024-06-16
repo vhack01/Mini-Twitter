@@ -242,10 +242,11 @@ export const Unfollow = async (req, res) => {
     }
 
     if (loggedInUser.followings.includes(otherUserId)) {
-      // follow
+      // unfollow
       await loggedInUser.updateOne({
         $pull: { followings: otherUserId },
       });
+
       await otherUser.updateOne({
         $pull: { followers: loggedInId },
       });

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { USER_END_POINT } from "../utils/constants";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setProfile } from "../store/slices/userSlice";
 
 const useGetProfile = (id) => {
+  console.log("useGetProfile:", id);
   const dispatch = useDispatch();
   useEffect(() => {
     fetchData();
@@ -22,11 +23,12 @@ const useGetProfile = (id) => {
         },
         withCredentials: true,
       });
+
       if (res?.data?.success === false) {
         toast.error(res?.data?.message);
         return;
       }
-      // console.log("profile res:", res);
+      console.log("profile res:", res);
       dispatch(setProfile(res.data.profile));
     } catch (err) {
       toast.error(err.response.data.message);

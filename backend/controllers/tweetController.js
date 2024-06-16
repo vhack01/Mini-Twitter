@@ -92,10 +92,11 @@ export const AllTweet = async (req, res) => {
     const followers = await Promise.all(
       user.followers.map((otherUserId) => Tweet.find({ userId: otherUserId }))
     );
+
     return res.status(200).json({
       message: "All tweets fetched successfully",
       myTweets: userTweets,
-      followers,
+      followers: followers.length > 0 ? followers[0] : [],
       success: true,
     });
   } catch (err) {
@@ -127,7 +128,7 @@ export const FollowingsTweet = async (req, res) => {
 
     return res.status(200).json({
       message: "All tweets fetched successfully",
-      followingsTweets,
+      followingsTweets: followingsTweets.length > 0 ? followingsTweets[0] : [],
       success: true,
     });
   } catch (err) {

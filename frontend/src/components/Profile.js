@@ -1,23 +1,83 @@
 import { BiLeftArrowAlt } from "react-icons/bi";
-import { BANNER_URL, SAMPLE_URL } from "../utils/constants";
+import { BANNER_URL, SAMPLE_URL, USER_END_POINT } from "../utils/constants";
 import useGetProfile from "../hooks/useGetProfile";
 import { useNavigate, useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "axios";
+import getToken from "../utils/getToken";
+import { updateFollowing } from "../store/slices/userSlice";
+import { setRefresh } from "../store/slices/tweetSlice";
 const Profile = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useParams();
-  useGetProfile(id);
-  const data = useSelector((store) => {
+  const { id: profileId } = useParams();
+  useGetProfile(profileId);
+
+  const profileData = useSelector((store) => {
     return store.user.profile;
   });
   const userData = useSelector((store) => {
     return store.user.user;
   });
 
-  if (data === null) return <h1>Loading...</h1>;
+  if (profileData === null) return <h1>Loading...</h1>;
+  console.log("profile data:", profileData);
+  const { _id, name, username } = profileData;
 
-  console.log("profile data:", data);
-  const { _id, name, username } = data;
+  function handleFollowUnfollow(id) {
+    if (userData?.followings?.includes(id)) {
+      unfollow(id);
+    } else {
+      follow(id);
+    }
+  }
+
+  async function unfollow(id) {
+    try {
+      const res = await axios.post(
+        `${USER_END_POINT}/unfollow/${id}`,
+        { userId: userData?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getToken(),
+          },
+        }
+      );
+      console.log("unfollow res:", res);
+      toast.success(res.data.message);
+      dispatch(updateFollowing(id));
+      dispatch(setRefresh());
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  }
+
+  async function follow(id) {
+    try {
+      const res = await axios.post(
+        `${USER_END_POINT}/follow/${id}`,
+        { userId: userData?._id },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getToken(),
+          },
+        }
+      );
+      console.log("follow res:", res);
+      if (res.data.success === false) {
+        toast.error(res.data.message);
+        return;
+      }
+      toast.success(res.data.message);
+      dispatch(updateFollowing(id));
+      dispatch(setRefresh());
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  }
 
   return (
     <div className="font-montserrat">
@@ -47,8 +107,18 @@ const Profile = () => {
             <button className="border-2 text-gray-600 text-xs font-semibold px-4 py-2 rounded-full cursor-pointer">
               Edit
             </button>
+          ) : userData?.followings?.includes(_id) ? (
+            <button
+              className="border border-gray-400 text-gray-700 text-sm font-semibold px-4 py-2 rounded-full cursor-pointer"
+              onClick={() => handleFollowUnfollow(_id)}
+            >
+              following
+            </button>
           ) : (
-            <button className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer">
+            <button
+              className="bg-black text-white text-xs px-4 py-2 rounded-full cursor-pointer"
+              onClick={() => handleFollowUnfollow(_id)}
+            >
               Follow
             </button>
           )}
