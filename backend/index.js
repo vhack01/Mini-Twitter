@@ -13,7 +13,7 @@ dotenv.config({
 databaseConnection();
 
 const corsOption = {
-  origin: ["http://localhost:3000", "https://mini-twitter-pi.vercel.app/"],
+  origin: "https://mini-twitter-pi.vercel.app/",
   credentials: true,
 };
 
