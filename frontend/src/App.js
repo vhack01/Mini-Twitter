@@ -1,13 +1,17 @@
-import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import appStore from "./store/appStore";
-import { Outlet } from "react-router-dom";
+import Body from "./components/Body";
+import { PersistGate } from "redux-persist/integration/react";
+import persistStore from "redux-persist/es/persistStore";
+
+const persistor = persistStore(appStore);
+
 function App() {
-  console.log("Home");
   return (
     <Provider store={appStore}>
-      <Outlet />
-      <Toaster />
+      <PersistGate loading={null} persistor={persistor}>
+        <Body />
+      </PersistGate>
     </Provider>
   );
 }

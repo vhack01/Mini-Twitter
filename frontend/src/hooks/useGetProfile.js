@@ -27,7 +27,7 @@ const useGetProfile = (id) => {
         toast.error(res?.data?.message);
         return;
       }
-      console.log("profile res:", res);
+      // console.log("profile res:", res);
       dispatch(setProfile(res.data.profile));
     } catch (err) {
       toast.error(err.response.data.message);

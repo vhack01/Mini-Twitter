@@ -12,10 +12,7 @@ const Feed = () => {
   const { myTweets } = useSelector((store) => {
     return store.tweet;
   });
-  // console.log("followers feed:", followers);
-  // console.log("followers:", followers);
   if (myTweets === null) return <h1>Loading feeds...</h1>;
-  console.log("myTweets:", myTweets);
 
   return (
     <div className="">

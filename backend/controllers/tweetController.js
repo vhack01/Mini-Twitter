@@ -124,8 +124,6 @@ export const FollowingsTweet = async (req, res) => {
       user.followings.map((otherUserId) => Tweet.find({ userId: otherUserId }))
     );
 
-    console.log("followingsTweets", followingsTweets);
-
     return res.status(200).json({
       message: "All tweets fetched successfully",
       followingsTweets: followingsTweets.length > 0 ? followingsTweets[0] : [],

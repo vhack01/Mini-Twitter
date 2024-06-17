@@ -7,12 +7,24 @@ import {
   BiLogoTwitter,
   BiUser,
 } from "react-icons/bi";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import { setOtherUser, setProfile, setUser } from "../store/slices/userSlice";
+import { setMyTweet } from "../store/slices/tweetSlice";
 const LeftSidebar = () => {
+  const dispatch = useDispatch();
   const user = useSelector((store) => {
     return store.user.user;
   });
+
+  const handleLogout = () => {
+    dispatch(setUser(null));
+    dispatch(setOtherUser(null));
+    dispatch(setProfile(null));
+    dispatch(setMyTweet(null));
+    console.log("logout");
+    localStorage.removeItem("token");
+  };
 
   const { pathname } = useLocation();
   return (
@@ -91,12 +103,14 @@ const LeftSidebar = () => {
           </Link>
         </li>
         <li className="">
-          <Link to="/home">
+          <Link to="/login">
             <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
                 <BiArrowFromLeft className="text-2xl" />
               </div>
-              <div className="">Logout</div>
+              <div className="" onClick={handleLogout}>
+                Logout
+              </div>
             </div>
           </Link>
         </li>

@@ -27,7 +27,7 @@ const Profile = () => {
   });
 
   if (tweets === null) return <h1>Loading feeds...</h1>;
-  console.log("myTweets:", tweets);
+  // console.log("myTweets:", tweets);
 
   if (profileData === null) return <h1>Loading...</h1>;
   // console.log("profile data:", profileData);
