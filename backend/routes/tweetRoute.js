@@ -6,12 +6,14 @@ import {
   DeleteTweet,
   FollowingsTweet,
   LikeDislike,
+  Bookmarks,
 } from "../controllers/tweetController.js";
 const router = Router();
 
 router.route("/create").post(auth, CreateTweet);
 router.route("/delete/:id").delete(auth, DeleteTweet);
 router.route("/like/:id").put(auth, LikeDislike);
+router.route("/bookmarks/:id").put(auth, Bookmarks);
 router.route("/alltweet/:id").get(auth, AllTweet);
 router.route("/following/:id").get(auth, FollowingsTweet);
 export default router;

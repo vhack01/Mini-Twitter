@@ -34,9 +34,9 @@ const useGetAllTweet = (id) => {
 
       const { followings, myTweets } = res?.data;
       const mergedTweet = [...myTweets, ...followings];
-      console.log("mergedTweet:", mergedTweet);
+      // console.log("mergedTweet:", mergedTweet);
 
-      console.log("sorted mergedTweet:", mergedTweet);
+      // console.log("sorted mergedTweet:", mergedTweet);
       dispatch(setMyTweet(mergedTweet));
     } catch (err) {
       toast.error(err.response.data.message);

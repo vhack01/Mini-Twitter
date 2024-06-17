@@ -2,7 +2,6 @@ import { Router } from "express";
 import {
   Signup,
   Login,
-  Bookmarks,
   Profile,
   OthersProfile,
   Follow,
@@ -13,7 +12,6 @@ const router = Router();
 
 router.route("/signup").post(Signup);
 router.route("/login").post(Login);
-router.route("/bookmarks/:id").put(auth, Bookmarks);
 router.route("/profile/:id").get(auth, Profile);
 router.route("/othersProfile/:id").get(auth, OthersProfile);
 router.route("/follow/:id").post(auth, Follow);

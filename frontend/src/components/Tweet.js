@@ -2,6 +2,7 @@ import {
   BiBookmarkAlt,
   BiHeart,
   BiMessageRounded,
+  BiSolidBookmarkAlt,
   BiSolidHeart,
   BiTrash,
 } from "react-icons/bi";
@@ -24,9 +25,10 @@ const Tweet = ({ data }) => {
     createdAt: postData,
     like,
     comment,
+    bookmarks,
     userDetail,
   } = data;
-  // console.log(userData);
+  // console.log("data:", data);
 
   const handleDeleteTweet = async (id) => {
     try {
@@ -65,7 +67,30 @@ const Tweet = ({ data }) => {
         toast.error(res.data.message);
         return;
       }
-      // toast.success(res?.data?.message);
+      dispatch(setRefresh());
+    } catch (err) {
+      toast.error(err.response.data.message);
+    }
+  };
+
+  const handleBookmarkTweet = async (id) => {
+    try {
+      const res = await axios.put(
+        `${TWEET_END_POINT}/bookmarks/${id}`,
+        { userId: userData?._id },
+        {
+          withCredentials: true,
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: getToken(),
+          },
+        }
+      );
+      if (res.data.success === false) {
+        toast.error(res.data.message);
+        return;
+      }
+      toast.success(res?.data?.message);
       dispatch(setRefresh());
     } catch (err) {
       toast.error(err.response.data.message);
@@ -107,8 +132,15 @@ const Tweet = ({ data }) => {
               )}
               <span className="p-2"> {like?.length && like?.length}</span>
             </li>
-            <li className="rounded-full flex items-center p-2 cursor-pointer hover:bg-purple-200">
-              <BiBookmarkAlt className={`text-xl`} />
+            <li
+              className="rounded-full flex items-center p-2 cursor-pointer hover:bg-purple-200"
+              onClick={() => handleBookmarkTweet(_id)}
+            >
+              {bookmarks?.length > 0 && bookmarks?.includes(userData?._id) ? (
+                <BiSolidBookmarkAlt className={`text-purple-500 text-xl`} />
+              ) : (
+                <BiBookmarkAlt className={`text-xl`} />
+              )}
             </li>
             {userData?._id === userId ? (
               <li

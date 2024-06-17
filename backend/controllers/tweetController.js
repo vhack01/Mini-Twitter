@@ -137,3 +137,31 @@ export const FollowingsTweet = async (req, res) => {
     });
   }
 };
+
+export const Bookmarks = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const { id: tweetId } = req.params;
+    const user = await USER.findById(userId);
+    const tweet = await Tweet.findById(tweetId);
+    // console.log("tweet:", user);
+    if (tweet.bookmarks.includes(userId)) {
+      await Tweet.findByIdAndUpdate(tweetId, { $pull: { bookmarks: userId } });
+      return res.status(200).json({
+        message: "Removed from bookmark",
+        success: true,
+      });
+    } else {
+      await Tweet.findByIdAndUpdate(tweetId, { $push: { bookmarks: userId } });
+      return res.status(200).json({
+        message: "Saved to bookmark",
+        success: true,
+      });
+    }
+  } catch (err) {
+    return res.status(401).json({
+      message: "Failed to bookmarked tweet",
+      success: false,
+    });
+  }
+};
