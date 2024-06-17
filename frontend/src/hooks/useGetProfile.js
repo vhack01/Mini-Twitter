@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { setProfile } from "../store/slices/userSlice";
 
 const useGetProfile = (id) => {
-  console.log("useGetProfile:", id);
   const dispatch = useDispatch();
   useEffect(() => {
     fetchData();

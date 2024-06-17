@@ -8,6 +8,7 @@ import axios from "axios";
 import getToken from "../utils/getToken";
 import { updateFollowing } from "../store/slices/userSlice";
 import { setRefresh } from "../store/slices/tweetSlice";
+import Tweet from "./Tweet";
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,8 +22,15 @@ const Profile = () => {
     return store.user.user;
   });
 
+  const tweets = useSelector((store) => {
+    return store.tweet.myTweets;
+  });
+
+  if (tweets === null) return <h1>Loading feeds...</h1>;
+  console.log("myTweets:", tweets);
+
   if (profileData === null) return <h1>Loading...</h1>;
-  console.log("profile data:", profileData);
+  // console.log("profile data:", profileData);
   const { _id, name, username } = profileData;
 
   function handleFollowUnfollow(id) {
@@ -130,6 +138,19 @@ const Profile = () => {
         <h3 className="text-xs text-gray-600 ">@{username}</h3>
         <p className="mt-4 text-xs">Student at LPU</p>
         <p className="text-xs">A passionate Fullstack developer from india</p>
+      </div>
+
+      <div className="border">
+        {tweets.length > 0 ? (
+          tweets?.map(
+            (tweet) =>
+              tweet.userId === userData?._id && (
+                <Tweet key={tweet?._id} data={tweet} />
+              )
+          )
+        ) : (
+          <h1>No Post</h1>
+        )}
       </div>
     </div>
   );

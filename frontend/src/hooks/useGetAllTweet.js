@@ -31,8 +31,8 @@ const useGetAllTweet = (id) => {
         toast.error(res.data.message);
         return;
       }
-      const { followers, myTweets } = res?.data;
-      dispatch(setMyTweet([...myTweets, ...followers]));
+      const { followings, myTweets } = res?.data;
+      dispatch(setMyTweet([...myTweets, ...followings]));
     } catch (err) {
       toast.error(err.response.data.message);
     }
