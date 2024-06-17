@@ -20,7 +20,7 @@ const corsOption = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOption));
+app.use(cors());
 
 app.use(
   express.urlencoded({
