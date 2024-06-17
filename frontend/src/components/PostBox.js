@@ -47,7 +47,7 @@ const PostBox = () => {
       <div className="w-full flex flex-col">
         <div className="w-full">
           <textarea
-            className="w-full h-32 p-2 resize-none scroll-smooth outline-none text-sm"
+            className="w-full h-32 p-2 resize-none scroll-smooth outline-none text-sm font-medium"
             placeholder="What is happening?"
             spellCheck="false"
             value={description}

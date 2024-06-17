@@ -12,10 +12,12 @@
     - Axios
     - React Hot Toast
     - Redux
+    - Redux-persist
 
 ### backend dependencies
 
     - Express
     - Mongoose
     - Dotenv
-    -
+    - Json Web Token(JWT)
+    - Cors

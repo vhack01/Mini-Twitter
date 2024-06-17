@@ -1,14 +1,15 @@
 import { useRouteError } from "react-router-dom";
+import LeftSidebar from "./LeftSidebar";
 const Error = () => {
   const errMsg = useRouteError();
   console.log(errMsg);
   return (
-    <h1>
-      <i>Oops!!! </i> Wrong route
-      <h2>
-        {errMsg.status} {errMsg.statusText}
-      </h2>
-    </h1>
+    <div className="sm:w-full lg:w-[1300px]  h-screen m-auto flex">
+      <LeftSidebar />
+      <div className="w-full">
+        <h1>Page NOT FOUND</h1>
+      </div>
+    </div>
   );
 };
 

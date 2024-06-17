@@ -15,7 +15,7 @@ const RightSidebar = () => {
   // console.log("other users:", otherUsers);
 
   return (
-    <div className="w-[40%] border flex flex-col gap-y-4 font-montserrat p-4">
+    <div className="w-[30%] border flex flex-col gap-y-4 font-montserrat p-4 ">
       <div className="flex pl-2 items-center rounded-full bg-gray-100 overflow-hidden">
         <BiSearchAlt2 className="text-xl text-gray-600" />
         <input

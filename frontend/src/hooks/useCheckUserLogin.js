@@ -10,6 +10,8 @@ const useCheckUserLogin = () => {
     if (token === null) {
       navigate("/login");
       return;
+    } else {
+      navigate("/home/feed");
     }
   }, []);
 };

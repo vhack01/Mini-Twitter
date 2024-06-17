@@ -11,6 +11,7 @@ import Feed from "./components/Feed";
 import Bookmarks from "./components/Bookmarks";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
+import Notification from "./components/Notification";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             element: <Explore />,
           },
           {
+            path: "/home/notification",
+            element: <Notification />,
+          },
+          {
             path: "/home/profile/:id",
             element: <Profile />,
           },
@@ -46,9 +51,9 @@ const router = createBrowserRouter([
             element: <Bookmarks />,
           },
         ],
+        errorElement: <Error />,
       },
     ],
-    errorElement: <Error />,
   },
 ]);
 

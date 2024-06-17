@@ -5,6 +5,10 @@ import {
   BiHash,
   BiHome,
   BiLogoTwitter,
+  BiSolidBell,
+  BiSolidBookmarkAlt,
+  BiSolidHome,
+  BiSolidUser,
   BiUser,
 } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,16 +31,19 @@ const LeftSidebar = () => {
   };
 
   const { pathname } = useLocation();
+  console.log("pathname:", pathname);
   return (
-    <div className="w-[30%] border font-montserrat p-4">
+    <div className="w-[30%] border font-montserrat p-4 ">
       <ul className="l">
         <li className="">
           <Link to="/home/feed">
             <div className="p-2 rounded-2xl flex gap-x-3 items-center">
               <div>
-                <BiLogoTwitter className="text-3xl" />
+                <BiLogoTwitter className="text-3xl text-themeColor-0" />
               </div>
-              <div className={`capitalize text-lg`}>{user?.name}</div>
+              <div className="capitalize text-lg font-semibold text-themeColor-0">
+                {user?.name}
+              </div>
             </div>
           </Link>
         </li>
@@ -44,7 +51,11 @@ const LeftSidebar = () => {
           <Link to="/home/feed">
             <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
-                <BiHome className="text-2xl" />
+                {pathname === "/home/feed" ? (
+                  <BiSolidHome className="text-2xl" />
+                ) : (
+                  <BiHome className="text-2xl" />
+                )}
               </div>
               <div className={pathname === "/home/feed" ? "font-bold" : ""}>
                 Home
@@ -68,7 +79,11 @@ const LeftSidebar = () => {
           <Link to="/home/notification">
             <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
-                <BiBell className="text-2xl" />
+                {pathname === "/home/notification" ? (
+                  <BiSolidBell className="text-2xl" />
+                ) : (
+                  <BiBell className="text-2xl" />
+                )}
               </div>
               <div
                 className={pathname === "/home/notification" ? "font-bold" : ""}
@@ -82,21 +97,35 @@ const LeftSidebar = () => {
           <Link to={`/home/profile/${user?._id}`}>
             <div className="px-4 py-3 rounded-full mt-2  flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
-                <BiUser className="text-2xl" />
+                {pathname.includes("/home/profile") ? (
+                  <BiSolidUser className="text-2xl" />
+                ) : (
+                  <BiUser className="text-2xl" />
+                )}
               </div>
-              <div className={pathname === "/home/profile" ? "font-bold" : ""}>
+              <div
+                className={
+                  pathname.includes("/home/profile") ? "font-bold" : ""
+                }
+              >
                 Profile
               </div>
             </div>
           </Link>
         </li>
         <li className="">
-          <Link to="/bookmarks">
+          <Link to="/home/bookmarks">
             <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
               <div>
-                <BiBookmarkAlt className="text-2xl" />
+                {pathname.includes("/home/bookmarks") ? (
+                  <BiSolidBookmarkAlt className="text-2xl" />
+                ) : (
+                  <BiBookmarkAlt className="text-2xl" />
+                )}
               </div>
-              <div className={pathname === "/bookmarks" ? "font-bold" : ""}>
+              <div
+                className={pathname === "/home/bookmarks" ? "font-bold" : ""}
+              >
                 Bookmarks
               </div>
             </div>
