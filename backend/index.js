@@ -15,6 +15,9 @@ databaseConnection();
 const corsOption = {
   origin: "https://mini-twitter-pi.vercel.app/",
   credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOption));
