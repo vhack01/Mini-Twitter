@@ -7,7 +7,5 @@ export const BANNER_URL =
 export const LOGO =
   "https://i.pinimg.com/originals/73/db/02/73db02344af2f927fd361decc424e8b8.png";
 
-export const USER_END_POINT =
-  "https://mini-twitter-server.vercel.app/api/v1/user";
-export const TWEET_END_POINT =
-  "https://mini-twitter-server.vercel.app/api/v1/tweet";
+export const USER_END_POINT = "/user";
+export const TWEET_END_POINT = "/tweet";
