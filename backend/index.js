@@ -17,7 +17,7 @@ const corsOption = {
   Credential: true,
 };
 
-app.use(cors("*"));
+app.use(cors(corsOption));
 
 app.use(
   express.urlencoded({
