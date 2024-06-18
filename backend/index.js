@@ -13,13 +13,13 @@ dotenv.config({
 databaseConnection();
 
 const corsOption = {
-  origin: "https://mini-twitter-app.vercel.app",
+  origin: "",
   optionsSuccessStatus: 200,
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors());
+app.use(cors("*"));
 
 app.use(
   express.urlencoded({
