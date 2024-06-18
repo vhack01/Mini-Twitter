@@ -14,7 +14,7 @@ const useCheckUserLogin = () => {
       navigate("/login");
       return;
     } else {
-      navigate("pathname");
+      navigate(pathname);
     }
   }, []);
 };
