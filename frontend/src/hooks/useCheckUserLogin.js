@@ -4,7 +4,6 @@ import getToken from "../utils/getToken";
 
 const useCheckUserLogin = () => {
   const location = useLocation();
-  console.log("location:", location);
   const { pathname } = location;
   const navigate = useNavigate();
   useEffect(() => {
@@ -14,7 +13,8 @@ const useCheckUserLogin = () => {
       navigate("/login");
       return;
     } else {
-      navigate(pathname);
+      if (pathname === "/") navigate("/home/feed");
+      else navigate(pathname);
     }
   }, []);
 };
