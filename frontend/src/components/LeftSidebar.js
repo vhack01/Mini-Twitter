@@ -12,10 +12,13 @@ import {
   BiUser,
 } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setOtherUser, setProfile, setUser } from "../store/slices/userSlice";
 import { setMyTweet } from "../store/slices/tweetSlice";
+import getToken from "../utils/getToken";
+
 const LeftSidebar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => {
     return store.user.user;
@@ -28,6 +31,7 @@ const LeftSidebar = () => {
     dispatch(setMyTweet(null));
     console.log("logout");
     localStorage.removeItem("token");
+    if (getToken() === null) navigate("/login");
   };
 
   const { pathname } = useLocation();
@@ -132,16 +136,14 @@ const LeftSidebar = () => {
           </Link>
         </li>
         <li className="">
-          <Link to="/login">
-            <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
-              <div>
-                <BiArrowFromLeft className="text-2xl" />
-              </div>
-              <div className="" onClick={handleLogout}>
-                Logout
-              </div>
+          <div className="px-4 py-3 rounded-full mt-2 flex gap-x-3 items-center cursor-pointer hover:bg-gray-100">
+            <div>
+              <BiArrowFromLeft className="text-2xl" />
             </div>
-          </Link>
+            <div className="" onClick={handleLogout}>
+              Logout
+            </div>
+          </div>
         </li>
         <li className="mt-2">
           <Link to="/home">

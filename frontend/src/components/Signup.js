@@ -90,7 +90,7 @@ const Signup = () => {
                 }}
               />
               <input
-                type="passowrd"
+                type="password"
                 placeholder="Password"
                 className="border rounded-full p-2 indent-2"
                 spellCheck="false"
