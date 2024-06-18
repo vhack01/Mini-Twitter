@@ -54,6 +54,7 @@ const router = createBrowserRouter([
         errorElement: <Error />,
       },
     ],
+    errorElement: <Error />,
   },
 ]);
 
