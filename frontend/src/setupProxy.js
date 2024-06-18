@@ -2,9 +2,9 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 module.exports = function (app) {
   app.use(
-    "/api",
+    "",
     createProxyMiddleware({
-      target: "http://localhost:5000", // Backend server URL
+      target: "https://mini-twitter-server.vercel.app/api/v1/", // Backend server URL
       changeOrigin: true,
     })
   );
