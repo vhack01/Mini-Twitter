@@ -1,8 +1,11 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import getToken from "../utils/getToken";
 
 const useCheckUserLogin = () => {
+  const location = useLocation();
+  console.log("location:", location);
+  const { pathname } = location;
   const navigate = useNavigate();
   useEffect(() => {
     const token = getToken();
@@ -11,7 +14,7 @@ const useCheckUserLogin = () => {
       navigate("/login");
       return;
     } else {
-      navigate("/home/feed");
+      navigate("pathname");
     }
   }, []);
 };
