@@ -1,12 +1,12 @@
 import BigLogo from "./BigLogo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import validateSignup from "../utils/validateSignup";
 import axios from "axios";
 import { USER_END_POINT } from "../utils/constants";
 import toast, { Toaster } from "react-hot-toast";
-
 const Signup = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -38,10 +38,11 @@ const Signup = () => {
       );
 
       if (res?.data?.success === false) {
-        toast.error(res.data.message);
+        toast.error(res?.data?.message);
         return;
       }
-      toast.success(res.data.message);
+      toast.success(res?.data?.message);
+      navigate("/login");
     } catch (err) {
       toast.error(err.response.data.message);
     }
