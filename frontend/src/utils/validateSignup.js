@@ -12,7 +12,6 @@ const validateSignup = ({ name, username, email, password }) => {
   ) {
     return "Empty field is not allowed";
   }
-
   return null;
 };
 

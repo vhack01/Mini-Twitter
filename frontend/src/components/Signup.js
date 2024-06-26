@@ -5,8 +5,10 @@ import validateSignup from "../utils/validateSignup";
 import axios from "axios";
 import { USER_END_POINT } from "../utils/constants";
 import toast, { Toaster } from "react-hot-toast";
+import { Oval } from "react-loader-spinner";
 const Signup = () => {
   const navigate = useNavigate();
+  const [isloading, setIsloading] = useState(false);
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -14,9 +16,11 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsloading(true);
     const validMessage = validateSignup({ name, username, email, password });
     if (validMessage !== null) {
-      alert(validMessage);
+      setIsloading(false);
+      toast.error(validMessage);
       return;
     }
 
@@ -42,9 +46,11 @@ const Signup = () => {
         return;
       }
       toast.success(res?.data?.message);
+      setIsloading(false);
       navigate("/login");
     } catch (err) {
-      toast.error(err.response.data.message);
+      setIsloading(false);
+      toast.error("err:", err.response.data.message);
     }
   };
 
@@ -101,8 +107,22 @@ const Signup = () => {
                 }}
               />
 
-              <button className="mt-3 border rounded-full p-2 indent-2 bg-themeColor-0 text-white font-medium text-lg">
-                Signup
+              <button className="mt-3 border rounded-full p-2 indent-2 bg-themeColor-0 text-white font-medium text-lg flex justify-center items-center">
+                {isloading ? (
+                  <Oval
+                    visible={true}
+                    height="20"
+                    width="20"
+                    color="#fff"
+                    strokeWidth="3"
+                    secondaryColor="white"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  "Signup"
+                )}
               </button>
             </form>
             <p className="text-sm mt-4">

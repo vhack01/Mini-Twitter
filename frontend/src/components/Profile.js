@@ -9,6 +9,8 @@ import getToken from "../utils/getToken";
 import { updateFollowing } from "../store/slices/userSlice";
 import { setRefresh } from "../store/slices/tweetSlice";
 import Tweet from "./Tweet";
+import NoPostShimmer from "./NoPostShimmer";
+import NoPost from "./NoPost";
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,9 +27,6 @@ const Profile = () => {
   const tweets = useSelector((store) => {
     return store.tweet.myTweets;
   });
-
-  if (tweets === null) return <h1>Loading feeds...</h1>;
-  // console.log("myTweets:", tweets);
 
   if (profileData === null) return <h1>Loading...</h1>;
   // console.log("profile data:", profileData);
@@ -141,7 +140,9 @@ const Profile = () => {
       </div>
 
       <div className="border">
-        {tweets.length > 0 ? (
+        {tweets === null ? (
+          <NoPostShimmer />
+        ) : tweets.length > 0 ? (
           tweets?.map(
             (tweet) =>
               tweet.userId === userData?._id && (
@@ -149,7 +150,7 @@ const Profile = () => {
               )
           )
         ) : (
-          <h1>No Post</h1>
+          <NoPost />
         )}
       </div>
     </div>

@@ -4,6 +4,8 @@ import Tweet from "./Tweet";
 import useGetUserId from "../hooks/useGetUserId";
 import useGetAllTweet from "../hooks/useGetAllTweet";
 import { useSelector } from "react-redux";
+import NoPostShimmer from "./NoPostShimmer";
+import NoPost from "./NoPost";
 
 const Feed = () => {
   const id = useGetUserId();
@@ -18,10 +20,12 @@ const Feed = () => {
     <div className="">
       <Tabs />
       <PostBox />
-      {myTweets.length > 0 ? (
+      {myTweets === null ? (
+        <NoPostShimmer />
+      ) : myTweets.length > 0 ? (
         myTweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
       ) : (
-        <h1>No Post</h1>
+        <NoPost />
       )}
       <Tweet />
     </div>
