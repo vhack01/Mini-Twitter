@@ -19,7 +19,7 @@ databaseConnection();
 // };
 
 // app.use(cors(corsOption));
-
+console.log("cors:", process.env.CORS_ORIGIN);
 app.use(
   cors({
     origin: `${process.env.CORS_ORIGIN}`,

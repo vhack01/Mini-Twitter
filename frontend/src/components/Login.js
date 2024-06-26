@@ -90,7 +90,7 @@ const Login = () => {
               </button>
             </form>
             <p className="text-sm mt-4">
-              Do not hava an account?{" "}
+              Do not have an account?{" "}
               <Link to="/signup">
                 <span className="text-themeColor-0 font-semibold cursor-pointer">
                   Signup
