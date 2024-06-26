@@ -19,7 +19,7 @@ const Tweet = ({ data }) => {
   });
   if (data === undefined) return;
   const {
-    _id,
+    _id: tweet_id,
     userId,
     description,
     createdAt: postData,
@@ -117,37 +117,55 @@ const Tweet = ({ data }) => {
 
         <div className="py-2 mt-2">
           <ul className="flex justify-between gap-x-4">
-            <li className="rounded-full flex items-center p-2 cursor-pointer hover:bg-green-100">
-              <BiMessageRounded className="text-xl" />
+            <li className="flex items-center p-2 ">
+              <div
+                className="cursor-pointer hover:bg-green-100 p-2 rounded-full"
+                onClick={() => handleLikeTweet(tweet_id)}
+              >
+                <BiMessageRounded className="text-xl" />
+              </div>
               <span>{comment?.length && comment?.length}</span>
             </li>
-            <li
-              className="rounded-full flex items-center p-2 cursor-pointer hover:bg-red-100 "
-              onClick={() => handleLikeTweet(_id)}
-            >
-              {like?.length > 0 && like.filter((id) => id === userData?._id) ? (
-                <BiSolidHeart className={`text-red-600 text-xl`} />
-              ) : (
-                <BiHeart className={`text-xl`} />
-              )}
+            <li className="flex items-center p-2">
+              <div
+                className="cursor-pointer hover:bg-red-100 p-2 rounded-full"
+                onClick={() => handleLikeTweet(tweet_id)}
+              >
+                {like?.length > 0 &&
+                like.filter((id) => id === userData?._id) ? (
+                  <BiSolidHeart className="text-red-600 text-xl " />
+                ) : (
+                  <BiHeart className={`text-xl`} />
+                )}
+              </div>
               <span className="p-2"> {like?.length && like?.length}</span>
             </li>
             <li
-              className="rounded-full flex items-center p-2 cursor-pointer hover:bg-purple-200"
-              onClick={() => handleBookmarkTweet(_id)}
+              className="flex items-center p-2 cursor-pointer"
+              onClick={() => handleBookmarkTweet(tweet_id)}
             >
-              {bookmarks?.length > 0 && bookmarks?.includes(userData?._id) ? (
-                <BiSolidBookmarkAlt className={`text-purple-500 text-xl`} />
-              ) : (
-                <BiBookmarkAlt className={`text-xl`} />
-              )}
+              <div
+                className="cursor-pointer hover:bg-purple-200 p-2 rounded-full"
+                onClick={() => handleLikeTweet(tweet_id)}
+              >
+                {bookmarks?.length > 0 && bookmarks?.includes(userData?._id) ? (
+                  <BiSolidBookmarkAlt className={`text-purple-500 text-xl`} />
+                ) : (
+                  <BiBookmarkAlt className={`text-xl`} />
+                )}
+              </div>
             </li>
             {userData?._id === userId ? (
               <li
-                className="rounded-full flex items-center p-2 cursor-pointer hover:bg-red-400"
-                onClick={() => handleDeleteTweet(_id)}
+                className="flex items-center p-2"
+                onClick={() => handleDeleteTweet(tweet_id)}
               >
-                <BiTrash className={` text-xl`} />
+                <div
+                  className="cursor-pointer hover:bg-red-400 p-2 rounded-full"
+                  onClick={() => handleLikeTweet(tweet_id)}
+                >
+                  <BiTrash className={` text-xl`} />
+                </div>
               </li>
             ) : (
               ""

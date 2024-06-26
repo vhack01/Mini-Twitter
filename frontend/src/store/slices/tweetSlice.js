@@ -4,13 +4,16 @@ const tweetSlice = createSlice({
   initialState: {
     myTweets: null,
     refresh: false,
+    profileTweet: null,
     isActive: 0,
   },
   reducers: {
     setMyTweet: (state, action) => {
       state.myTweets = action.payload;
     },
-
+    setProfileTweet: (state, action) => {
+      state.profileTweet = action.payload;
+    },
     setRefresh: (state) => {
       state.refresh = !state.refresh;
     },
@@ -20,5 +23,6 @@ const tweetSlice = createSlice({
   },
 });
 
-export const { setMyTweet, setRefresh, setIsActive } = tweetSlice.actions;
+export const { setMyTweet, setRefresh, setIsActive, setProfileTweet } =
+  tweetSlice.actions;
 export default tweetSlice.reducer;

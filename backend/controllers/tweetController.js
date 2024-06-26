@@ -165,3 +165,30 @@ export const Bookmarks = async (req, res) => {
     });
   }
 };
+
+export const GetTweetById = async (req, res) => {
+  try {
+    const { id: profileId } = req.params;
+    if (!profileId) {
+      return res.status(401).json({
+        message: "Unauthorized user",
+        success: false,
+      });
+    }
+
+    const user = await USER.findById(profileId);
+    const tweets = await Tweet.find({ userId: profileId });
+
+    return res.status(200).json({
+      message: "User profile tweets",
+      profileTweet: tweets,
+      success: true,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      message: "Failed to get tweets",
+      success: false,
+      error: err,
+    });
+  }
+};

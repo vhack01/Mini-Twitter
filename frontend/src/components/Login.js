@@ -8,8 +8,11 @@ import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/slices/userSlice";
 import { Oval } from "react-loader-spinner";
+import useAuth from "../hooks/useAuth";
 
 const Login = () => {
+  useAuth();
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

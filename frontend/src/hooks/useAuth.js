@@ -2,21 +2,19 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import getToken from "../utils/getToken";
 
-const useCheckUserLogin = () => {
+const useAuth = () => {
   const location = useLocation();
   const { pathname } = location;
   const navigate = useNavigate();
   useEffect(() => {
     const token = getToken();
-    console.log("token:", token);
     if (token === null) {
-      navigate("/login");
-      return;
+      if (pathname === "/signup") navigate("/signup");
+      else navigate("/");
     } else {
-      if (pathname === "/") navigate("/home/feed");
-      else navigate(pathname);
+      navigate(pathname);
     }
   }, []);
 };
 
-export default useCheckUserLogin;
+export default useAuth;

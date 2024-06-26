@@ -127,7 +127,7 @@ const Signup = () => {
             </form>
             <p className="text-sm mt-4">
               Already hava an account?{" "}
-              <Link to="/login">
+              <Link to="/">
                 <span className="text-themeColor-0 font-semibold cursor-pointer">
                   Login
                 </span>

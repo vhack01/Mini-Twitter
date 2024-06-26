@@ -11,11 +11,14 @@ import { setRefresh } from "../store/slices/tweetSlice";
 import Tweet from "./Tweet";
 import NoPostShimmer from "./NoPostShimmer";
 import NoPost from "./NoPost";
+import { ShimmerSocialPost } from "react-shimmer-effects";
+import useGetProfileTweet from "../hooks/useGetProfileTweet";
 const Profile = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id: profileId } = useParams();
   useGetProfile(profileId);
+  useGetProfileTweet(profileId);
 
   const profileData = useSelector((store) => {
     return store.user.profile;
@@ -24,12 +27,10 @@ const Profile = () => {
     return store.user.user;
   });
 
-  const tweets = useSelector((store) => {
-    return store.tweet.myTweets;
-  });
+  const tweets = useSelector((store) => store.tweet.profileTweet);
+  console.log("UI profile tweets:", tweets);
 
-  if (profileData === null) return <h1>Loading...</h1>;
-  // console.log("profile data:", profileData);
+  if (profileData === null) return <ShimmerSocialPost type="image" />;
   const { _id, name, username } = profileData;
 
   function handleFollowUnfollow(id) {
@@ -143,12 +144,7 @@ const Profile = () => {
         {tweets === null ? (
           <NoPostShimmer />
         ) : tweets.length > 0 ? (
-          tweets?.map(
-            (tweet) =>
-              tweet.userId === userData?._id && (
-                <Tweet key={tweet?._id} data={tweet} />
-              )
-          )
+          tweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
         ) : (
           <NoPost />
         )}

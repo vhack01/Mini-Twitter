@@ -14,7 +14,6 @@ const Feed = () => {
   const { myTweets } = useSelector((store) => {
     return store.tweet;
   });
-  if (myTweets === null) return <h1>Loading feeds...</h1>;
 
   return (
     <div className="">
