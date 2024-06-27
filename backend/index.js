@@ -13,7 +13,7 @@ dotenv.config({
 databaseConnection();
 // [process.env.CORS_ORIGIN, "http://localhost:3000"]
 const corsOption = {
-  origin: process.env.CORS_ORIGIN,
+  origin: "http://localhost:3000",
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };

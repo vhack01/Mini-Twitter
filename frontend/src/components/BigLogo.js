@@ -3,7 +3,7 @@ import { LOGO } from "../utils/constants";
 const BigLogo = () => {
   return (
     <div className="flex justify-start items-center px-4">
-      <img src={LOGO} alt="logo" className="w-[30%] md:w-full" />
+      <img src={LOGO} alt="logo" className="w-[20%] md:w-full" />
     </div>
   );
 };

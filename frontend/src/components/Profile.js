@@ -28,7 +28,6 @@ const Profile = () => {
   });
 
   const tweets = useSelector((store) => store.tweet.profileTweet);
-  console.log("UI profile tweets:", tweets);
 
   if (profileData === null) return <ShimmerSocialPost type="image" />;
   const { _id, name, username } = profileData;
@@ -140,7 +139,7 @@ const Profile = () => {
         <p className="text-xs">A passionate Fullstack developer from india</p>
       </div>
 
-      <div className="border">
+      <div className="border-t">
         {tweets === null ? (
           <NoPostShimmer />
         ) : tweets.length > 0 ? (

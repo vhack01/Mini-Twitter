@@ -47,7 +47,7 @@ const Signup = () => {
       }
       toast.success(res?.data?.message);
       setIsloading(false);
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       setIsloading(false);
       toast.error("err:", err.response.data.message);

@@ -33,13 +33,11 @@ const LeftSidebar = () => {
     dispatch(setOtherUser(null));
     dispatch(setProfile(null));
     dispatch(setMyTweet(null));
-    console.log("logout");
     localStorage.removeItem("token");
     if (getToken() === null) navigate("/");
   };
 
   const { pathname } = useLocation();
-  console.log("pathname:", pathname);
   return (
     <>
       {isLogout && <LogoutConfirm data={{ setIsLogout, handleLogout }} />}

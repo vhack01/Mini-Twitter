@@ -5,6 +5,7 @@ const userSlice = createSlice({
     user: null,
     otherUser: null,
     profile: null,
+    bookmarks: null,
   },
   reducers: {
     setUser: (state, action) => {
@@ -27,9 +28,17 @@ const userSlice = createSlice({
         state.user.followings.push(id);
       }
     },
+    setBookmarks: (state, action) => {
+      state.bookmarks = action.payload;
+    },
   },
 });
 
-export const { setUser, setOtherUser, setProfile, updateFollowing } =
-  userSlice.actions;
+export const {
+  setUser,
+  setOtherUser,
+  setProfile,
+  updateFollowing,
+  setBookmarks,
+} = userSlice.actions;
 export default userSlice.reducer;

@@ -26,7 +26,7 @@ const useGetAllTweet = (id) => {
           Authorization: token,
         },
       });
-      console.log("all tweets:", res);
+      // console.log("all tweets:", res);
       if (res.data.success === false) {
         toast.error(res.data.message);
         return;

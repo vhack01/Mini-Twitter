@@ -144,15 +144,21 @@ export const Bookmarks = async (req, res) => {
     const { id: tweetId } = req.params;
     const user = await USER.findById(userId);
     const tweet = await Tweet.findById(tweetId);
-    // console.log("tweet:", user);
     if (tweet.bookmarks.includes(userId)) {
       await Tweet.findByIdAndUpdate(tweetId, { $pull: { bookmarks: userId } });
+      await user.updateOne({
+        $pull: { bookmarks: tweetId },
+      });
       return res.status(200).json({
         message: "Removed from bookmark",
         success: true,
       });
     } else {
       await Tweet.findByIdAndUpdate(tweetId, { $push: { bookmarks: userId } });
+      await user.updateOne({
+        $push: { bookmarks: tweetId },
+      });
+
       return res.status(200).json({
         message: "Saved to bookmark",
         success: true,

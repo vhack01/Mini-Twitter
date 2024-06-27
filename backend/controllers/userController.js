@@ -1,6 +1,7 @@
 import { userExist } from "../utils/userExits.js";
 import { validateUser } from "../utils/validateUser.js";
 import { USER } from "../models/userSchema.js";
+import { Tweet } from "../models/tweetSchema.js";
 import configEnv from "../utils/configEnv.js";
 import jwt from "jsonwebtoken";
 
@@ -235,6 +236,34 @@ export const Unfollow = async (req, res) => {
   } catch (err) {
     return res.status(401).json({
       message: "Unable to follow profile",
+      success: false,
+      error: err,
+    });
+  }
+};
+
+export const GetBookmarks = async (req, res) => {
+  const id = req.body.userId;
+  if (!id) {
+    return res.status(401).json({
+      message: "Unauthorized user",
+      success: false,
+    });
+  }
+  try {
+    const user = await USER.findById(id);
+    const bookmarkTweets = await Promise.all(
+      user.bookmarks.map((tweetId) => Tweet.find({ _id: tweetId }))
+    );
+
+    return res.status(200).json({
+      message: "All bookmarked tweets fetched successfully",
+      bookmarks: bookmarkTweets.length > 0 ? bookmarkTweets[0] : [],
+      success: true,
+    });
+  } catch (err) {
+    return res.status(401).json({
+      message: "Failed to get bookmarked tweets",
       success: false,
       error: err,
     });

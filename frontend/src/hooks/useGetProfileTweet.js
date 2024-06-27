@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { TWEET_END_POINT, USER_END_POINT } from "../utils/constants";
+import { TWEET_END_POINT } from "../utils/constants";
 import axios from "axios";
 import getToken from "../utils/getToken";
 import { useDispatch } from "react-redux";
-import { setProfile } from "../store/slices/userSlice";
 import { setProfileTweet } from "../store/slices/tweetSlice";
 
 const useGetProfileTweet = (id) => {
@@ -28,7 +27,6 @@ const useGetProfileTweet = (id) => {
         toast.error(res?.data?.message);
         return;
       }
-      console.log("profile tweets:", res.data);
       dispatch(setProfileTweet(res.data.profileTweet));
     } catch (err) {
       toast.error(err.response.data.message);
