@@ -253,12 +253,12 @@ export const GetBookmarks = async (req, res) => {
   try {
     const user = await USER.findById(id);
     const bookmarkTweets = await Promise.all(
-      user.bookmarks.map((tweetId) => Tweet.find({ _id: tweetId }))
+      user.bookmarks.map((tweetId) => Tweet.findById({ _id: tweetId }))
     );
 
     return res.status(200).json({
       message: "All bookmarked tweets fetched successfully",
-      bookmarks: bookmarkTweets.length > 0 ? bookmarkTweets[0] : [],
+      bookmarks: bookmarkTweets,
       success: true,
     });
   } catch (err) {

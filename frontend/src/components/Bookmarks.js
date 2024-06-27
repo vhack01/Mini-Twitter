@@ -1,24 +1,27 @@
 import { useSelector } from "react-redux";
 import useGetBookmarks from "../hooks/useGetBookmarks";
 import NoPostShimmer from "./NoPostShimmer";
-import NoPost from "./NoPost";
+import NoBookmarks from "./NoBookmarks";
 import Tweet from "./Tweet";
+import FeedHeader from "./FeedHeader";
 
 const Bookmarks = () => {
   const user = useSelector((store) => store.user.user);
-
   useGetBookmarks(user._id);
   const tweets = useSelector((store) => store.user.bookmarks);
 
   return (
     <div className="border-t">
-      {tweets === null ? (
-        <NoPostShimmer />
-      ) : tweets.length > 0 ? (
-        tweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
-      ) : (
-        <NoPost />
-      )}
+      <FeedHeader heading="Bookmarks" username={user?.username} />
+      <div className="pt-5">
+        {tweets === null ? (
+          <NoPostShimmer />
+        ) : tweets.length > 0 ? (
+          tweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
+        ) : (
+          <NoBookmarks />
+        )}
+      </div>
     </div>
   );
 };

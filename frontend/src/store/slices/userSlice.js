@@ -6,6 +6,7 @@ const userSlice = createSlice({
     otherUser: null,
     profile: null,
     bookmarks: null,
+    refreshBookmark: false,
   },
   reducers: {
     setUser: (state, action) => {
@@ -31,6 +32,9 @@ const userSlice = createSlice({
     setBookmarks: (state, action) => {
       state.bookmarks = action.payload;
     },
+    setBookmarkRefresh: (state) => {
+      state.refreshBookmark = !state.refreshBookmark;
+    },
   },
 });
 
@@ -40,5 +44,6 @@ export const {
   setProfile,
   updateFollowing,
   setBookmarks,
+  setBookmarkRefresh,
 } = userSlice.actions;
 export default userSlice.reducer;

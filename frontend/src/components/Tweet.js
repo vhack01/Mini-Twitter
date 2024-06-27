@@ -12,6 +12,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { setRefresh } from "../store/slices/tweetSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setBookmarkRefresh } from "../store/slices/userSlice";
 const Tweet = ({ data }) => {
   const dispatch = useDispatch();
   const userData = useSelector((store) => {
@@ -92,6 +93,7 @@ const Tweet = ({ data }) => {
       }
       toast.success(res?.data?.message);
       dispatch(setRefresh());
+      dispatch(setBookmarkRefresh());
     } catch (err) {
       toast.error(err.response.data.message);
     }

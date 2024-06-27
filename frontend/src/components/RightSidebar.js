@@ -2,6 +2,7 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import useGetOtherUsers from "../hooks/useGetOtherUsers";
 import { useSelector } from "react-redux";
 import ProfileStrip from "./ProfileStripe";
+import { ShimmerCategoryList } from "react-shimmer-effects";
 const RightSidebar = () => {
   const otherUsers = useSelector((store) => {
     return store.user.otherUser;
@@ -11,8 +12,6 @@ const RightSidebar = () => {
     return store.user.user;
   });
   useGetOtherUsers(user?._id);
-
-  // console.log("other users:", otherUsers);
 
   return (
     <div className="w-[40%] border flex flex-col gap-y-4 font-montserrat p-4 ">
@@ -29,7 +28,7 @@ const RightSidebar = () => {
         <div className="">
           <ul className="flex flex-col gap-y-2">
             {otherUsers === null ? (
-              <h1>Loading otherUsers...</h1>
+              <ShimmerCategoryList items={3} categoryStyle="STYLE_SEVEN" />
             ) : (
               otherUsers.map((user) => (
                 <ProfileStrip key={user._id} data={user} />

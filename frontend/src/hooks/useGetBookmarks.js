@@ -3,14 +3,15 @@ import { useEffect } from "react";
 import { USER_END_POINT } from "../utils/constants";
 import getToken from "../utils/getToken";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setBookmarks } from "../store/slices/userSlice";
 
 const useGetBookmarks = (id) => {
+  const refreshBookmark = useSelector((store) => store.user.refreshBookmark);
   const dispatch = useDispatch();
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [refreshBookmark]);
 
   const fetchData = async () => {
     try {
