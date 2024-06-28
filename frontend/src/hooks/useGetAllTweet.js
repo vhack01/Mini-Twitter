@@ -26,7 +26,6 @@ const useGetAllTweet = (id) => {
           Authorization: token,
         },
       });
-      // console.log("all tweets:", res);
       if (res.data.success === false) {
         toast.error(res.data.message);
         return;
@@ -34,9 +33,7 @@ const useGetAllTweet = (id) => {
 
       const { followings, myTweets } = res?.data;
       const mergedTweet = [...myTweets, ...followings];
-      // console.log("mergedTweet:", mergedTweet);
       mergedTweet.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      // console.log("sorted mergedTweet:", mergedTweet);
       dispatch(setMyTweet(mergedTweet));
     } catch (err) {
       toast.error(err.response.data.message);
@@ -56,7 +53,6 @@ const useGetAllTweet = (id) => {
         toast.error(res.data.message);
         return;
       }
-      // console.log("following tweet:", res.data);
       const { followingsTweets } = res?.data;
       dispatch(setMyTweet(followingsTweets));
       // dispatch(setRefresh());

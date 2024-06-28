@@ -39,7 +39,6 @@ export const DeleteTweet = async (req, res) => {
 
     try {
       const user = await USER.findById(userId);
-      console.log("user:", user);
       if (user?.bookmarks?.includes(_id)) {
         await user.updateOne({ _id: userId }, { $pull: { images: _id } });
       }

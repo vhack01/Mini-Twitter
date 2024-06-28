@@ -20,7 +20,6 @@ const Tweet = ({ data }) => {
     return store.user.user;
   });
   if (!data) return;
-  console.log("tweet data:", data);
   const {
     _id: tweet_id,
     userId,
@@ -32,7 +31,6 @@ const Tweet = ({ data }) => {
     userDetail,
     images,
   } = data;
-  // console.log("data:", data);
 
   const handleDeleteTweet = async (id) => {
     try {

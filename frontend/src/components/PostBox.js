@@ -25,7 +25,6 @@ const PostBox = () => {
       let uploadedImages = [];
       if (files) {
         uploadedImages = await handleUploadImage();
-        console.log("uploadedImages:", uploadedImages);
       }
       const res = await axios.post(
         `${TWEET_END_POINT}/create`,
@@ -58,7 +57,6 @@ const PostBox = () => {
   };
 
   const handleEmoji = (par) => {
-    // console.log("par:", par);
     setDescription((description) => description + par?.emoji);
   };
 
@@ -67,7 +65,6 @@ const PostBox = () => {
     for (let i = 0; i < files.length; i++) {
       const data = new FormData();
       data.append("file", files[i]);
-      console.log("file:", files[i]);
       data.append("public_id", files[i].name);
       data.append("upload_preset", "r6h1ntnp");
       data.append("api_key", "415817326442787");
@@ -82,9 +79,8 @@ const PostBox = () => {
           return;
         }
         uploadedImages.push(res.data);
-        console.log("image res:", res);
       } catch (err) {
-        console.log("upload failed:", err);
+        toast.error(err.response.data.message);
       }
     }
 

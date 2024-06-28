@@ -22,7 +22,6 @@ const useGetOtherUsers = (id) => {
           Authorization: token,
         },
       });
-      // console.log("others profile res:", res);
       if (res.data.success === false) {
         toast.error(res.data.message);
         return;

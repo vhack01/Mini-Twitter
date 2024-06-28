@@ -52,7 +52,6 @@ const Profile = () => {
           },
         }
       );
-      console.log("unfollow res:", res);
       toast.success(res.data.message);
       dispatch(updateFollowing(id));
       dispatch(setRefresh());
@@ -73,7 +72,6 @@ const Profile = () => {
           },
         }
       );
-      console.log("follow res:", res);
       if (res.data.success === false) {
         toast.error(res.data.message);
         return;

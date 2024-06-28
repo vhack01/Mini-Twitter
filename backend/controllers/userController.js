@@ -48,7 +48,6 @@ export const Signup = async (req, res) => {
 export const Login = async (req, res) => {
   const { username, password } = req.body;
   const user = await validateUser({ username, password });
-  console.log("user:", user);
   if (user === null) {
     return res.status(401).json({
       message: "Invalid user credentials",
@@ -109,7 +108,6 @@ export const Profile = async (req, res) => {
 export const OthersProfile = async (req, res) => {
   try {
     const { id: loggedInId } = req.params;
-    console.log("loggedInId");
     if (!loggedInId) {
       return res.status(404).json({
         message: "No user found",

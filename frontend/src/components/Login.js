@@ -44,7 +44,6 @@ const Login = () => {
         }
       );
 
-      console.log("login res:", res);
       if (res?.data?.success === false) {
         toast.error("Invalid credentials");
         return;

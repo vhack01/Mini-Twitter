@@ -2,7 +2,6 @@ import { useRouteError } from "react-router-dom";
 import LeftSidebar from "./LeftSidebar";
 const Error = () => {
   const errMsg = useRouteError();
-  console.log(errMsg);
   return (
     <div className="sm:w-full lg:w-[1300px]  h-screen m-auto flex">
       <LeftSidebar />
