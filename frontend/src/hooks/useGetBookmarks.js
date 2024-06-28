@@ -12,7 +12,7 @@ const useGetBookmarks = (id) => {
   useEffect(() => {
     fetchData();
   }, [refreshBookmark]);
-
+  console.log("id:", id);
   const fetchData = async () => {
     try {
       const res = await axios.post(
@@ -27,7 +27,6 @@ const useGetBookmarks = (id) => {
           },
         }
       );
-
       console.log("res:", res);
       if (res.status !== 200) {
         toast.error(res.data.message);

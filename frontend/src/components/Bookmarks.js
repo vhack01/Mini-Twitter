@@ -7,7 +7,7 @@ import FeedHeader from "./FeedHeader";
 
 const Bookmarks = () => {
   const user = useSelector((store) => store.user.user);
-  useGetBookmarks(user._id);
+  useGetBookmarks(user?._id);
   const tweets = useSelector((store) => store.user.bookmarks);
 
   return (

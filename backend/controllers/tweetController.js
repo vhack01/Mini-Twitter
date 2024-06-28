@@ -2,10 +2,10 @@ import { Tweet } from "../models/tweetSchema.js";
 import { USER } from "../models/userSchema.js";
 
 export const CreateTweet = async (req, res) => {
-  const { description, id } = req.body;
-  if (description.trim().length === 0 || !id) {
+  const { description, uploadedImages, id } = req.body;
+  if ((description.trim().length === 0 && uploadedImages.length === 0) || !id) {
     return res.status(401).json({
-      message: "Failed to created tweet",
+      message: "Unauthorized user",
       success: false,
     });
   }
@@ -16,20 +16,29 @@ export const CreateTweet = async (req, res) => {
       userId: id,
       description,
       userDetail: user,
+      images: uploadedImages,
     });
     res.status(200).json({
       message: "Tweet created",
       success: true,
     });
   } catch (err) {
-    console.log("Failed to created Tweet:", err);
+    return res.status(401).json({
+      message: "Failed to created tweet",
+      success: false,
+      error: err,
+    });
   }
 };
 
 export const DeleteTweet = async (req, res) => {
   try {
+    const { userId } = req.body;
     const { id: _id } = req.params;
     const isDeleted = await Tweet.findByIdAndDelete(_id);
+    const user = await USER.findById({ _id: userId });
+    await user.updateOne({ _id: userId }, { $pull: { images: _id } });
+
     if (!isDeleted) {
       return res.status(401).json({
         message: "Failed to delete tweet",

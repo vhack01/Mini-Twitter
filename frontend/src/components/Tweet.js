@@ -13,12 +13,14 @@ import toast from "react-hot-toast";
 import { setRefresh } from "../store/slices/tweetSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setBookmarkRefresh } from "../store/slices/userSlice";
+import TweetImage from "./TweetImage";
 const Tweet = ({ data }) => {
   const dispatch = useDispatch();
   const userData = useSelector((store) => {
     return store.user.user;
   });
-  if (data === undefined) return;
+  if (!data) return;
+  console.log("tweet data:", data);
   const {
     _id: tweet_id,
     userId,
@@ -28,6 +30,7 @@ const Tweet = ({ data }) => {
     comment,
     bookmarks,
     userDetail,
+    images,
   } = data;
   // console.log("data:", data);
 
@@ -114,7 +117,14 @@ const Tweet = ({ data }) => {
             </span>
             <span className="text-xs text-gray-600">{postData}</span>
           </div>
-          <div className="text-sm py-1 ">{description} </div>
+          <div className="flex flex-col gap-y-2">
+            <div className="text-sm py-1 font-medium">{description}</div>
+            <div className="flex flex-wrap gap-2">
+              {images?.map((image) => (
+                <TweetImage key={image?.asset_id} image={image} />
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="py-2 mt-2">
