@@ -16,7 +16,7 @@ const Bookmarks = () => {
       <div className="pt-5">
         {tweets === null ? (
           <NoPostShimmer />
-        ) : tweets.length > 0 ? (
+        ) : tweets?.length > 0 ? (
           tweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
         ) : (
           <NoBookmarks />
