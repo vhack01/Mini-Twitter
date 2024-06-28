@@ -1,7 +1,6 @@
 import jwt from "jsonwebtoken";
 import configEnv from "../utils/configEnv.js";
 const auth = (req, res, next) => {
-  console.log("authenticating...");
   const token = req.headers.authorization;
   configEnv("../.env");
   try {

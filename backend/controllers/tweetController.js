@@ -33,11 +33,22 @@ export const CreateTweet = async (req, res) => {
 
 export const DeleteTweet = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { id: userId } = req.body;
     const { id: _id } = req.params;
     const isDeleted = await Tweet.findByIdAndDelete(_id);
-    const user = await USER.findById({ _id: userId });
-    await user.updateOne({ _id: userId }, { $pull: { images: _id } });
+
+    try {
+      const user = await USER.findById(userId);
+      console.log("user:", user);
+      if (user?.bookmarks?.includes(_id)) {
+        await user.updateOne({ _id: userId }, { $pull: { images: _id } });
+      }
+    } catch (err) {
+      return res.status(401).json({
+        message: "Failed to delete tweet from bookmarks",
+        success: false,
+      });
+    }
 
     if (!isDeleted) {
       return res.status(401).json({
@@ -60,7 +71,7 @@ export const DeleteTweet = async (req, res) => {
 
 export const LikeDislike = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { id: userId } = req.body;
     const { id: tweetId } = req.params;
     const tweet = await Tweet.findById(tweetId);
     if (tweet.like.includes(userId)) {
