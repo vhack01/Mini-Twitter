@@ -9,7 +9,7 @@ const Bookmarks = () => {
   const user = useSelector((store) => store.user.user);
   useGetBookmarks(user?._id);
   const tweets = useSelector((store) => store.user.bookmarks);
-
+  console.log("tweet:", tweets);
   return (
     <div className="border-t">
       <FeedHeader heading="Bookmarks" username={user?.username} />
@@ -17,7 +17,9 @@ const Bookmarks = () => {
         {tweets === null ? (
           <NoPostShimmer />
         ) : tweets?.length > 0 ? (
-          tweets?.map((tweet) => <Tweet key={tweet?._id} data={tweet} />)
+          tweets?.map(
+            (tweet) => tweet && <Tweet key={tweet?._id} data={tweet} />
+          )
         ) : (
           <NoBookmarks />
         )}

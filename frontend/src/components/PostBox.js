@@ -19,7 +19,7 @@ const PostBox = () => {
 
   const handleCreatePost = async () => {
     setEmoji(false);
-    if (description.trim().length === 0 && !files) return;
+    if (description.trim().length === 0 && files.length === 0) return;
     setIsloading(true);
     try {
       let uploadedImages = [];
@@ -63,6 +63,11 @@ const PostBox = () => {
   const handleUploadImage = async () => {
     const uploadedImages = [];
     for (let i = 0; i < files.length; i++) {
+      console.log("ImageFile:", files[i]);
+      if (!files[i]?.type.includes("image")) {
+        toast.error(files[i].name + "is invalid file. Only image/gif.");
+        continue;
+      }
       const data = new FormData();
       data.append("file", files[i]);
       data.append("public_id", files[i].name);
@@ -130,11 +135,6 @@ const PostBox = () => {
                   onChange={(e) => setFiles([...e.target.files])}
                   multiple
                 />
-              </div>
-            </li>
-            <li className="">
-              <div className="bg-gray-100 rounded-full p-2 cursor-not-allowed">
-                <BiSolidFileGif className="text-lg" />
               </div>
             </li>
             <li className="relative">

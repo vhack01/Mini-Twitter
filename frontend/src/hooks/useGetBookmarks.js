@@ -10,6 +10,7 @@ const useGetBookmarks = (id) => {
   const refreshBookmark = useSelector((store) => store.user.refreshBookmark);
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log("refresh bookmark");
     fetchData();
   }, [refreshBookmark]);
   const fetchData = async () => {

@@ -159,7 +159,7 @@ export const FollowingsTweet = async (req, res) => {
 
 export const Bookmarks = async (req, res) => {
   try {
-    const { userId } = req.body;
+    const { id: userId } = req.body;
     const { id: tweetId } = req.params;
     const user = await USER.findById(userId);
     const tweet = await Tweet.findById(tweetId);
